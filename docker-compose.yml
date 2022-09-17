@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  apiload:
+    image: ${DOCKER_REGISTRY-}apiload
+    build:
+      context: .
+      dockerfile: APILoad/Dockerfile
+
+  webrazor:
+    image: ${DOCKER_REGISTRY-}webrazor
+    build:
+      context: .
+      dockerfile: WebRazor/Dockerfile
+
