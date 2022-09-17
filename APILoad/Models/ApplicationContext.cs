@@ -8,6 +8,7 @@ namespace APILoad.Models
         public DbSet<Company> Companies { get; set; }
         public DbSet<Package> Packeges { get; set; }
         public DbSet<App> Apps { get; set; }
+        public DbSet<App_package> App_package { get; set; }
 
 
         public ApplicationContext()

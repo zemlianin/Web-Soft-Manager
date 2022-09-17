@@ -7,17 +7,15 @@ namespace APILoad.Controllers
 {
     public class UserController : Controller
     {
-        [HttpPost("Post-user")]
-        public string Post(string? Login, string? Password, string? Info, int idCompany)
+        [HttpPost("post-user")]
+        public void Post(string? Login, string? Password, string? Info, int idCompany)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
                 var comp = db.Companies.Find(idCompany);
-                User user = new User() {Login=Login,Password=Password,Info=Info,Company=comp };
+                User user = new User() {Login=Login,Password=Password,Info=Info,CompanyId=idCompany };
                 db.Users.Add(user);
                 db.SaveChanges();
-                return comp.Login;
-               
             }
         }
 

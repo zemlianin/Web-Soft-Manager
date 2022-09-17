@@ -1,83 +1,42 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using APILoad.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APILoad.Controllers
 {
     public class AppController : Controller
     {
-        // GET: AppController
-        public ActionResult Index()
+        [HttpPost("post-app")]
+        public void Post(string? instalCommand, string? info)
         {
-            return View();
-        }
-
-        // GET: AppController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: AppController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AppController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            using (ApplicationContext db = new ApplicationContext())
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                App app = new App() {InstalCommand = instalCommand, Info = info };
+                db.Apps.Add(app);
+                db.SaveChanges();
             }
         }
 
-        // GET: AppController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet("get-app-by-id")]
+        public App Get(int id)
         {
-            return View();
-        }
-
-        // POST: AppController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
+            using (ApplicationContext db = new ApplicationContext())
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                return db.Apps.Find(id);
             }
         }
 
-        // GET: AppController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpPost("post-add-package-in-app")]
+        public void Post(int appId,int packageId)
         {
-            return View();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var package = db.Packeges.Find(packageId);
+                var app = db.Apps.Find(appId);
+                db.App_package.Add(new App_package() { AppId = appId, PackageId = packageId });
+                db.SaveChanges();
+            }
         }
 
-        // POST: AppController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

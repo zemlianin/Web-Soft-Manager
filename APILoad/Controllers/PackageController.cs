@@ -1,82 +1,56 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using APILoad.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace APILoad.Controllers
 {
     public class PackageController : Controller
     {
-        // GET: PackageController
-        public ActionResult Index()
+        [HttpPost("post-package")]
+        public void Post(string info, string? script, int  companyId )
         {
-            return View();
-        }
-
-        // GET: PackageController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: PackageController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: PackageController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
+            using (ApplicationContext db = new ApplicationContext())
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                Package pack = new Package() {Info = info, Script = script, CompanyId = companyId};
+                db.Packeges.Add(pack);
+                db.SaveChanges();
             }
         }
 
-        // GET: PackageController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet("get-package-by-id")]
+        public Package Get(int id)
         {
-            return View();
-        }
-
-        // POST: PackageController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
+            using (ApplicationContext db = new ApplicationContext())
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                return db.Packeges.Find(id);
             }
         }
 
-        // GET: PackageController/Delete/5
-        public ActionResult Delete(int id)
+        [HttpGet("get-all-apps")]
+        public List<int> GetApps(int id)
         {
-            return View();
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                var records = db.App_package.Where(p => p.PackageId == id);
+                var list = new List<int>();
+                foreach(var r in records)
+                {
+                    list.Add(r.AppId);
+                }
+                return list;
+            }
         }
 
-        // POST: PackageController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        [HttpPost("post-add-app-in-package")]
+        public void Post(int packageId, int appId)
         {
-            try
+            using (ApplicationContext db = new ApplicationContext())
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                var package = db.Packeges.Find(packageId);
+                var app = db.Apps.Find(appId);
+                db.App_package.Add(new App_package() { AppId = appId, PackageId = packageId });
+                db.SaveChanges();
             }
         }
     }
