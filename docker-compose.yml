@@ -12,6 +12,13 @@ services:
     build:
       context: .
       dockerfile: WebRazor/Dockerfile
+
+  client:
+    image: client
+    build:
+      context: ./my-app
+      dockerfile: Dockerfile
+
   postgres:
     image: postgres
     environment:
@@ -22,7 +29,8 @@ services:
       - ./volumes/data/db:/var/lib/postgresql/data
       - ./dbscripts:/docker-entrypoint-initdb.d
     ports:
-       - 5432:5432
+       - 5433:5433
     restart: always
     
-
+  proxy:
+    image: nginx:mainline
