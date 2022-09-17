@@ -362,5 +362,7 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+# Spec removes
 volumes1/
-volumes/
+voluems/
+/volumes/data/db
