@@ -12,4 +12,17 @@ services:
     build:
       context: .
       dockerfile: WebRazor/Dockerfile
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=app
+      - POSTGRES_PASSWORD=app
+      - POSTGRES_DB=mydbname2
+    volumes:
+      - ./volumes/data/db:/var/lib/postgresql/data
+      - ./dbscripts:/docker-entrypoint-initdb.d
+    ports:
+       - 5432:5432
+    restart: always
+    
 

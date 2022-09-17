@@ -1,9 +1,9 @@
+using APILoad.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace APILoad.Controllers
 {
-    [ApiController]
-    [Route("[controller]")]
+
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -18,16 +18,28 @@ namespace APILoad.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet("GetWeatherForecast")]
+        public int Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+            using (ApplicationContext db = new ApplicationContext())
             {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+                // создаем два объекта User
+                var comp1 = new Company();
+
+                User user1 = new User() {Company = comp1} ;
+                User user2 = new User();
+
+                // добавляем их в бд
+                db.Companies.Add(comp1);
+                db.Users.Add(user1);
+                
+                db.SaveChanges();
+              
+                // получаем объекты из бд и выводим на консоль
+                var users = db.Users.ToList();
+
+                return users[users.Count-1].Company.Id;
+            }
         }
     }
 }
