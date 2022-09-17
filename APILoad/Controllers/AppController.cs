@@ -7,11 +7,11 @@ namespace APILoad.Controllers
     public class AppController : Controller
     {
         [HttpPost("post-app")]
-        public void Post(string? instalCommand, string? info)
+        public void Post(string? name, string? instalCommand, string? info)
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                App app = new App() {InstalCommand = instalCommand, Info = info };
+                App app = new App() {Name = name, InstalCommand = instalCommand, Info = info };
                 db.Apps.Add(app);
                 db.SaveChanges();
             }

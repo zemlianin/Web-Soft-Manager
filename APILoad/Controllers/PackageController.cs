@@ -8,11 +8,11 @@ namespace APILoad.Controllers
     public class PackageController : Controller
     {
         [HttpPost("post-package")]
-        public void Post(string info, string? script, int  companyId )
+        public void Post(string? name, string? shortInfo, string info, string? script, int  companyId )
         {
             using (ApplicationContext db = new ApplicationContext())
             {
-                Package pack = new Package() {Info = info, Script = script, CompanyId = companyId};
+                Package pack = new Package() {Name= name, Info = info, ShortInfo = shortInfo, Script = script, CompanyId = companyId};
                 db.Packeges.Add(pack);
                 db.SaveChanges();
             }
@@ -26,6 +26,16 @@ namespace APILoad.Controllers
                 return db.Packeges.Find(id);
             }
         }
+
+        [HttpGet("get-all-package")]
+        public List<Package> GetAll()
+        {
+            using (ApplicationContext db = new ApplicationContext())
+            {
+                return db.Packeges.ToList();
+            }
+        }
+
 
         [HttpGet("get-all-apps")]
         public List<int> GetApps(int id)
