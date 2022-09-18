@@ -18,8 +18,10 @@ import {
 
 import CardSet from "./components/Card";
 import Header from "./components/Header";
+import AppsList from "./components/AppsList";
 
 import AppList from "./screens/AppList";
+
 
 const arrSet = [
   { name: 'Super прогер XL', shortInfo: 'Набор для программистов XL', info: 'Тут есть, что-то настолько важное, установив которое, вы настолько сильно преисполнитесь!' },
@@ -33,6 +35,10 @@ const arrApp = [
   { name: "Yandex" },
   { name: "Opera" },
   { name: "Edge" },
+]
+
+var arr =[
+  
 ]
 
 function OnClickCreateSet2() {
@@ -68,16 +74,13 @@ function OnLoadFunc() {
   // alert(987);
 }
 
-// function GetCheckBoxes(props) {
-//   let res;
-//   props.map((obj) => res+= 
-//     <div className="form-check form-switch">
-//       <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
-//       <label className="form-check-label" for="flexSwitchCheckDefault">{obj.name}</label>
-//     </div>)
-//   ;
-//   return res;
-// }
+function GetCheckBoxes(props) {
+  return (
+    <div className="form-check form-switch">
+      <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+      <label className="form-check-label" for="flexSwitchCheckDefault">{props.name}</label>
+    </div>);
+}
 
 function App() {
   React.useEffect(() => {
@@ -86,22 +89,7 @@ function App() {
 
   return (
     <div className="">
-      {/* <Header /> */}
-      <header className="">
-        <Navbar bg="white" variant="white">
-          <Container>
-            <Navbar.Brand href="/">AutoSoft</Navbar.Brand>
-            <Nav className="me-auto">
-              {/* <Nav.Link href="/applist">Создать пакет ПО</Nav.Link> */}
-              {/* <Nav.Link href="#features">Mac</Nav.Link>
-                <Nav.Link href="#pricing">IOS</Nav.Link> */}
-
-            </Nav>
-            <Nav.Link href="/profile">Profile</Nav.Link>
-          </Container>
-        </Navbar>
-      </header>
-
+      <Header />
 
       <div>
         <Card className="border-white bg-light text-black">
@@ -126,28 +114,7 @@ function App() {
         </div>
       </Container>
 
-      <Container>
-        <h1 className='titleSet'>Программы</h1>
-
-        <div>
-          {/* {GetCheckBoxes(arrApp)} */}
-          <h4>Браузеры</h4>
-          <div>
-            <div className="form-check form-switch">
-              <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
-              <label className="form-check-label" for="flexSwitchCheckDefault">Google</label>
-            </div>
-            <div className="form-check form-switch">
-              <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
-              <label className="form-check-label" for="flexSwitchCheckDefault">Yandex</label>
-            </div>
-            <div className="form-check form-switch">
-              <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
-              <label className="form-check-label" for="flexSwitchCheckDefault">Opera</label>
-            </div>
-          </div>
-        </div>
-      </Container>
+      <AppsList />
 
       <Card className="border-white bg-light text-black footer overflow-hidden">
         <Card.Img src="/images/Rectangle.png" alt="Card image" />

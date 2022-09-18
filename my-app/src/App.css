@@ -38,6 +38,15 @@
 }
 
 
+.listApps{
+  display: flex;
+  margin-bottom: 40px;
+}
+
+.listApps2{
+  margin-right: 40px;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
