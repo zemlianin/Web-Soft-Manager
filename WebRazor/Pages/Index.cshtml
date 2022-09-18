@@ -3,8 +3,10 @@
 @{
     ViewData["Title"] = "Home page";
 }
-
+@{
+    var t = ((Byte[])ViewData["Bytes"]).Length;
+}
 <div class="text-center">
-    <h1 class="display-4">ViewData["Bytes"]</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core"></a>.</p>
+    <h1 class="display-4">@t</h1>
+    
 </div>
