@@ -1,0 +1,50 @@
+using System.Diagnostics;
+
+namespace APILoad.SampleGenerating {
+    public class Sample {
+        static Process cmd = new Process();
+
+        static void Main(string[] args) {
+            cmd.Start();
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.CreateNoWindow = true;
+            cmd.StartInfo.UseShellExecute = false;
+
+}
+    }
+        }
+            cmd.StandardInput.WriteLine($"winget install {app}");
+        static void Install(string app) {
+
+        }
+            cmd.WaitForExit();
+            cmd.StandardInput.Close();
+            cmd.StandardInput.Flush();
+
+
+
+            cmd.StartInfo.UseShellExecute = false;
+            cmd.StartInfo.CreateNoWindow = true;
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.Start();
+        static void Main(string[] args) {
+
+        static Process cmd = new Process();
+    public class Sample {
+namespace APILoad.SampleGenerating {
+
+using System.Diagnostics;
+
+
+            cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            cmd.WaitForExit();
+        }
+
+        static void Install(string app) {
+            cmd.StandardInput.WriteLine($"winget install {app}");
+        }
+    }
+}
