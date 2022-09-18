@@ -24,17 +24,17 @@ function AppsList(props) {
                 <AppTheme theme={"Браузеры"}
                     arr={[
                         { name: 'Google', id: 1 },
-                        { name: 'Gwwgle', id: 2 },
-                        { name: 'Gaagle', id: 3 }]}
+                        { name: 'Yabdex', id: 2 },
+                        { name: 'Opera', id: 3 }]}
                 />
-                <AppTheme theme={"Что-то"}
+                <AppTheme theme={"Редакторы кода"}
                     arr={[
-                        { name: 'Geegle', id: 4 },
-                        { name: 'Guugle', id: 5 }
+                        { name: 'NotePad++', id: 4 },
+                        { name: 'NotePad--', id: 5 }
                     ]} />
-                <AppTheme theme={"Чего-то"}
+                <AppTheme theme={"Tools"}
                     arr={[
-                        { name: 'Giigle', id: 6 }
+                        { name: 'Docker', id: 6 }
                     ]} />
 
             </div>
