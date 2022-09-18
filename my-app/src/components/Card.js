@@ -8,9 +8,24 @@ import {
 //     alert('Hello!');
 // }
 
+function OnClickPack() {
+    console.log("Click Pack");
+    alert(456);
+    // fetch("https://localhost:44301/api/Employee")
+    //     .then(res => res.json())
+    //     .then(
+    //       (result) => {
+    //         this.setState({
+    //           employees: result
+    //         });
+    //       }
+    //     );
+}
+
+
 function CardSet(props) {
     return (
-        <div >
+        <div onClick={OnClickPack.bind()}>
             <Card style={{ width: '15rem' }} className='cardSet'>
                 <Card.Body>
                     <Card.Title>{props.title}</Card.Title>
