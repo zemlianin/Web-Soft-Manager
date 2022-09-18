@@ -4,7 +4,74 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+
+    @*<div class="">
+        <header class="">
+            <navbar bg="white" variant="white">
+                <container>
+                    <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                    <Nav className="me-auto">
+                        <Nav.Link href="#home">Windows</Nav.Link>
+                        <Nav.Link href="#features">Mac</Nav.Link>
+                        <Nav.Link href="#pricing">IOS</Nav.Link>
+                        <Nav.Link href="#pricing">Android</Nav.Link>
+                    </Nav>
+                    <Nav.Link href="#pricing">Profile</Nav.Link>
+                </container>
+            </navbar>
+        </header>*@
+      <div>
+        <card class="border-white bg-light text-black">
+          <img src="/Images/plant.png" alt="Card image" />
+          <Card.ImgOverlay>
+            <div class="pickDiv">
+              <Card.Title><b>Сделайте установку<br /> ПО проще с нами</b></Card.Title>
+              <div class="pickText">
+                <Button class="colorPurp">Создать пакет ПО</Button>
+              </div>
+            </div>
+          </Card.ImgOverlay>
+        </card>
+      </div>
+
+      <Container>
+        <h1 class ='titleSet'>Пакеты программ</h1>
+        <div class ='setOfCardSet'>
+          {arrSet.map((obj) => (
+            <CardSet title={obj.name} shortInfo={obj.shortInfo} info={obj.info} />
+          ))}
+        </div>
+      </Container>
+
+      <div class='footer'>
+        <Container>
+          <h2>Контакты</h2>
+          <div class="row">
+            <div class="col">
+              Колонка
+            </div>
+            <div class="col">
+              Колонка
+            </div>
+            <div class="col">
+              Колонка
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              Колонка
+            </div>
+            <div class="col">
+              Колонка
+            </div>
+            <div class="col">
+              Колонка
+            </div>
+          </div>
+        </Container>
+      </div>
+    </div >
+  );
+}
+

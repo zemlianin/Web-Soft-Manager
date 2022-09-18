@@ -17,17 +17,13 @@ const arrSet = [
 ];
 
 function OnClickCreateSet() {
+    const result = await fetch('http://localhost:5000/get-all-package');
+    const apps = await result.json();
+    this.setState({ apps });
+    console.log(this.setState[0]);
   console.log("Click Create");
   alert(123);
-  console.log(fetch("https://ApiLoad/get-all-package")
-    .then(res => res.json())
-    .then(
-      (result) => {
-        this.setState({
-          employees: result
-        });
-      }
-    ));
+  
 }
 
 function OnLoadFunc() {
